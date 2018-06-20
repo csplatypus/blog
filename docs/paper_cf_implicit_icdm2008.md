@@ -34,12 +34,15 @@ as of writing, largest computation was on Netflix dataset 2007
     * Fix: __exploiting structure of variables__... rewrite $Y^tC_uY$ as $Y^tY + Y^t(C_u-I)Y$, $C_u$ is sparse as it only has non-zero elements where $r_u$ is non-zero
     * Opinion: their gain is from rewriting algebra, but they explicityly created a knob to make the matrix sparser first. Without this knob, rewrite is not effective.
 
+### Recommendations
+* For each user $u$, recommend items $j$ with highest dot product $y_j^tx_u$. 
+* Explainability: for each (i,j) pair, generate top 5 items that explained the recommendation __for that user__. This is computed by factorizing the item latent factors per user. THis would be interesting to implement, but increases the scalability problem as it needs one more matrix inversion + matrix-vector multiplication (per user...?).
+
 ### Unresolved questions
 * Notation: Should Equation (3) use $r$ and not $p$? Section 4 $r$ is defined as dot product, and $p$ is the binary indicator variable. Next page, $p$ is redefined as dot-product.   
 * ALS Algorithm
     * How is Y initialized in __Let us assume item fctors are gathered in $Y_{nxf} matrix. Before looping through users, we compute fxf matrix Y^tY__
-    
-    
+        
 ### Legend
 * Opinion: my thoughts. Can be wrong/will be revised on better understanding.
 * Italics: verbatim quote from paper
